@@ -7,13 +7,14 @@ import AboutCommand from './commands/AboutCommand'
 import ContactCommand from './commands/ContactCommand'
 import WhoamiCommand from './commands/WhoamiCommand'
 import WelcomeMsg from './messages/WelcomeMsg'
+import NotFound from './commands/NotFound'
 
 const App = () => {
 
   const [input,setInput] =useState('')
   const [outputs,setOutputs] = useState([])
   const [commandHistory,setCommandHistory] = useState([])
-  const [historyIndex,setHistoryIndex] = useState(-1);
+  const [historyIndex,setHistoryIndex] = useState(0);
   const [isTyping,setIsTyping] = useState(false);
   const inputRef = useRef(null)
   const terminalRef = useRef(null)
@@ -45,6 +46,7 @@ const App = () => {
       case 'contact': return (<ContactCommand/>)
       case 'clear': return (<></>)
       case 'whoami': return (<WhoamiCommand/>)
+      default : return (<NotFound/>)
     } 
 
   }
@@ -66,19 +68,91 @@ const App = () => {
 
   const handleCommand = (cmd)=>{
 
+    const currCommand = cmd.trim()
+
+    if(currCommand==='') return
     
+    if(currCommand === 'clear'){
+      setCommandHistory([])
+      setOutputs([])
+      setHistoryIndex(0)
+      
+    }
+
+    const newOutput = {
+
+      id:`${currCommand}`,
+      command:currCommand,
+      output:getCommandOutput(currCommand)
+    }
+
+    setHistoryIndex(prev => prev+1);
+    setCommandHistory( prev => [...prev,newOutput])
+    setOutputs(prev => [...prev, newOutput]);    
 
   }
 
   const handeKeyDown = (e)=>{
 
+    
+    if(e.key === 'Enter'){
+      handleCommand(input);
+      setInput('')
+    }
+    else if(e.key === 'ArrowUp'){
+      
+      // e.preventDefault()
+      // const idx = ( commandHistory.length>0 && historyIndex>0 ) ? historyIndex-1 : 0
+
+      // setHistoryIndex(idx)
+      // setInput(commandHistory[idx])
+    }
+    else if( e.key === 'ArrowDown'){
+
+    }
+    else if( e.key === 'Tab' ){
+
+    } 
 
   }
   return (
     <div className=' min-h-screen bg-gray-900 font-mono  '>
 
+      <div className=' overflow-y-auto '>
+      {
+
+        outputs.map( (output)=>(
+
+          <div key={output.id}>
+
+              {
+                output.command && (
+                  
+                  <div className=' flex items-center gap-2'>
+                    <span className=' text-green-400'>harsh.sahani@portfolio:~$</span>
+                    <span> {output.command} </span>
+                  </div>
+                )
+              }
+              
+            
+              {
+                typeof output.output !== 'string' &&
+                (
+                  output.output
+                )
+              }
+
+              
+
+
+          </div>
+        ))
+      }
+
+      </div>
       
-      
+
       <div className=' flex items-center gap-2'>
 
 
