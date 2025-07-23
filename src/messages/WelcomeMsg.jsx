@@ -14,7 +14,7 @@ const WelcomeMsg = () => {
 ╚═════════════════════════════════════════════╝
 `;
   return (
-    <div >
+    <div className=' ' >
 
       <div className=' flex gap-2 text-[#00FF00]'>
         <Terminal/> <span> Terminal portfolio v2.1.0</span>
@@ -31,8 +31,8 @@ const WelcomeMsg = () => {
 
       <ul>
         <li>💡 Pro tips:</li>
-        <li>• Use Tab for auto-completion</li>
-        <li>• Use ↑↓ for command history</li>
+        <li>•  Use Tab for auto-completion</li>
+        <li>•  Use ↑↓ for command history</li>
       </ul>
     </div>
 

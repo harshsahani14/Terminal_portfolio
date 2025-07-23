@@ -73,10 +73,10 @@ const App = () => {
     if(currCommand==='') return
     
     if(currCommand === 'clear'){
+      setHistoryIndex(0)
       setCommandHistory([])
       setOutputs([])
-      setHistoryIndex(0)
-      
+
     }
 
     const newOutput = {
@@ -116,33 +116,40 @@ const App = () => {
 
   }
   return (
-    <div className=' min-h-screen bg-gray-900 font-mono  '>
+    <div className=' min-h-screen bg-gray-900 font-mono   '>
 
-      <div className=' overflow-y-auto '>
+      <div className=' overflow-y-auto   '>
+
+        
       {
 
         outputs.map( (output)=>(
 
-          <div key={output.id}>
+          <div key={output.id} className=' pl-4 h-full pb-4  '>
 
+            <div className=' mb-2'>
               {
                 output.command && (
                   
                   <div className=' flex items-center gap-2'>
                     <span className=' text-green-400'>harsh.sahani@portfolio:~$</span>
-                    <span> {output.command} </span>
+                    <span className=' text-white'> {output.command} </span>
                   </div>
                 )
               }
+            </div>
               
             
+            <div>
               {
+
                 typeof output.output !== 'string' &&
                 (
                   output.output
                 )
               }
 
+            </div>
               
 
 
@@ -153,7 +160,7 @@ const App = () => {
       </div>
       
 
-      <div className=' flex items-center gap-2'>
+      <div className=' flex items-center gap-2 pl-4  '>
 
 
         <span className=' text-green-400'>harsh.sahani@portfolio:~$</span>
