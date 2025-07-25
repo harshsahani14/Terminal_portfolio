@@ -33,6 +33,7 @@ const WelcomeMsg = () => {
         <li>💡 Pro tips:</li>
         <li>•  Use Tab for auto-completion</li>
         <li>•  Use ↑↓ for command history</li>
+        <li>•  Use Esc to clear input line</li>
       </ul>
     </div>
 

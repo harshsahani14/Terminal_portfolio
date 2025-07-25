@@ -8,7 +8,7 @@ import ContactCommand from './commands/ContactCommand'
 import WhoamiCommand from './commands/WhoamiCommand'
 import WelcomeMsg from './messages/WelcomeMsg'
 import NotFound from './commands/NotFound'
-import TypeWriterComponent from './messages/TypeWriterComponent'
+import AchievementsCommand from './commands/AchievementsCommand'
 
 const App = () => {
 
@@ -51,6 +51,8 @@ const App = () => {
       case 'contact': return (<ContactCommand/>)
       case 'clear': return ''
       case 'whoami': return (<WhoamiCommand/>)
+      case 'banner': return (<WelcomeMsg/>)
+      case 'achievements': return (<AchievementsCommand/>)
       default : return (<NotFound/>)
     } 
 
