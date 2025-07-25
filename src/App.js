@@ -33,6 +33,10 @@ const App = () => {
     socials:'socials'
   }
 
+  useEffect( ()=>{
+    inputRef.current.scrollIntoView({ behavior: 'smooth' });
+  },[outputs])
+
   const getCommandOutput = (cmd)=>{
 
     const command = cmd.toLowerCase().trim()
@@ -116,7 +120,7 @@ const App = () => {
 
   }
   return (
-    <div className=' min-h-screen bg-gray-900 font-mono pb-6 pt-4    '>
+    <div className=' min-h-screen bg-gray-900 font-mono pb-6 pt-4 '>
 
       <div className=' overflow-y-auto   '>
 

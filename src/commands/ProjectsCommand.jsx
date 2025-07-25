@@ -43,25 +43,21 @@ const ProjectsCommand = () => {
 
         </div>
         <div className=' ml-2 flex flex-col'>
-          <a href='https://github.com/harshsahani14/Course_Mangement_System' className=' text-blue-500 text-[20px] font-bold
-           hover:underline'>Course management API</a>
-          <p className=' text-gray-400'>Backend for an edtech website in javascript</p>
+          <a href='https://github.com/harshsahani14/StudySphere' className=' text-blue-500 text-[20px] font-bold
+           hover:underline'>StudySphere</a>
+          <p className=' text-gray-400'>An edtech platform where students can buy and consume courses and teachers can upload courses for sale</p>
 
           <div className=' flex gap-3 mt-2'>
-            <div className=' w-[90px] h-[30px]  bg-gray-700 rounded-md flex justify-center items-center text-gray-300 '>
-                ExpressJs
-            </div>
-
-            <div className=' w-[65px] h-[30px]  bg-gray-700 rounded-md flex justify-center items-center text-gray-300 '>
-                NodeJs
+            <div className=' w-[50px] h-[30px]  bg-gray-700 rounded-md flex justify-center items-center text-gray-300 '>
+                MERN
             </div>
 
             <div className=' w-[80px] h-[30px]  bg-gray-700 rounded-md flex justify-center items-center text-gray-300 '>
                 RazorPay
             </div>
 
-            <div className=' w-[95px] h-[30px]  bg-gray-700 rounded-md flex justify-center items-center text-gray-300 '>
-                Nodemailer 
+            <div className=' w-[60px] h-[30px]  bg-gray-700 rounded-md flex justify-center items-center text-gray-300 '>
+                Redux
             </div>
           </div>
         </div>  

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 .glow-text {
   color: #f472b6;
   text-shadow:
@@ -33,3 +35,5 @@
     0 0 10px rgba(255, 255, 255, 0.3),
     0 0 20px rgba(255, 255, 255, 0.2);
 }
+
+/* Hide scrollbar globally (for Brave, Chrome, Firefox, etc.) */
