@@ -20,21 +20,25 @@ const App = () => {
   const inputRef = useRef(null)
   const terminalRef = useRef(null)
 
-  const commands = {
-    help:'help',
-    about:'about',
-    skills:'skills',
-    experience:'experience',
-    whoami:'whoami',
-    projects:'projects',
-    clear:'clear',
-    contact:'contact',
-    history:'history',
-    socials:'socials'
-  }
+  const commands = [
+    'help',
+    'about',
+    'skills',
+    'experience',
+    'whoami',
+    'projects',
+    'clear',
+    'contact',
+    'banner',
+    'achievements',
+    ]
 
   useEffect( ()=>{
-    inputRef.current.scrollIntoView({ behavior: 'smooth' });
+
+    if (inputRef.current) {
+      inputRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+    
   },[outputs])
 
   const getCommandOutput = (cmd)=>{
@@ -81,7 +85,8 @@ const App = () => {
     
     if(currCommand === 'clear'){
       setOutputs([])
-      setCommandHistory(prev => [...prev, currCommand]);
+      setCommandHistory(prev => [...prev, {id:"clear", command: currCommand, output: ''}]);
+      setHistoryIndex(prev=>prev+1)
       return;
     }
 
@@ -98,7 +103,7 @@ const App = () => {
 
   }
 
-  const handeKeyDown = (e)=>{
+  const handleKeyDown = (e)=>{
 
     
     if(e.key === 'Enter'){
@@ -107,19 +112,47 @@ const App = () => {
     }
     else if(e.key === 'ArrowUp'){
       
-      // e.preventDefault()
-      // const idx = ( commandHistory.length>0 && historyIndex>0 ) ? historyIndex-1 : 0
+      e.preventDefault()
+      const idx = historyIndex-1 
 
-      // setHistoryIndex(idx)
-      // setInput(commandHistory[idx])
+      if(idx<0){
+        return
+      }
+
+      setHistoryIndex(idx)
+      setInput(commandHistory[idx].command)
     }
     else if( e.key === 'ArrowDown'){
+
+      e.preventDefault()
+      const idx = historyIndex+1 
+
+      if(idx>= commandHistory.length){
+        return
+      }
+
+      setHistoryIndex(idx)
+      setInput(commandHistory[idx].command)
 
     }
     else if( e.key === 'Tab' ){
 
-    } 
+      e.preventDefault()
+      
+      const command = input.trim().toLowerCase()
 
+      for(const cmd of commands){
+        if(cmd.startsWith(command)){
+          setInput(cmd);
+          return;
+        }
+      } 
+     return;
+    }
+    else if(e.key === 'Escape'){
+      e.preventDefault()
+      setInput('')
+    }
   }
   return (
     <div className=' min-h-screen bg-gray-900 font-mono pb-6 pt-4 '>
@@ -173,7 +206,7 @@ const App = () => {
          type='text'
          placeholder='Type a command...'
          className=' bg-transparent text-white outline-none'
-         onKeyDown={handeKeyDown}
+         onKeyDown={handleKeyDown}
          value={input}
         >
         </input>
@@ -182,5 +215,4 @@ const App = () => {
     </div>
   )
 }
-
 export default App
