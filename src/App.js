@@ -8,6 +8,7 @@ import ContactCommand from './commands/ContactCommand'
 import WhoamiCommand from './commands/WhoamiCommand'
 import WelcomeMsg from './messages/WelcomeMsg'
 import NotFound from './commands/NotFound'
+import TypeWriterComponent from './messages/TypeWriterComponent'
 
 const App = () => {
 
@@ -44,7 +45,7 @@ const App = () => {
       case 'history' : return (<HistoryCommand/>)
       case 'about' : return (<AboutCommand/>)
       case 'contact': return (<ContactCommand/>)
-      case 'clear': return (<></>)
+      case 'clear': return ''
       case 'whoami': return (<WhoamiCommand/>)
       default : return (<NotFound/>)
     } 
@@ -73,10 +74,9 @@ const App = () => {
     if(currCommand==='') return
     
     if(currCommand === 'clear'){
-      setHistoryIndex(0)
-      setCommandHistory([])
       setOutputs([])
-
+      setCommandHistory(prev => [...prev, currCommand]);
+      return;
     }
 
     const newOutput = {
@@ -116,7 +116,7 @@ const App = () => {
 
   }
   return (
-    <div className=' min-h-screen bg-gray-900 font-mono   '>
+    <div className=' min-h-screen bg-gray-900 font-mono pb-6 pt-4   '>
 
       <div className=' overflow-y-auto   '>
 
@@ -140,17 +140,14 @@ const App = () => {
             </div>
               
             
-            <div>
+          
               {
-
                 typeof output.output !== 'string' &&
                 (
                   output.output
                 )
               }
-
-            </div>
-              
+            
 
 
           </div>
