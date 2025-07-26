@@ -57,7 +57,7 @@ const App = () => {
       case 'whoami': return (<WhoamiCommand/>)
       case 'banner': return (<WelcomeMsg/>)
       case 'achievements': return (<AchievementsCommand/>)
-      default : return (<NotFound/>)
+      default : return (<NotFound cmd={command}/>)
     } 
 
   }
